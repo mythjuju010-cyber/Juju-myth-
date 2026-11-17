@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>XEROF 256 PRO</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif}
+body{background:#0A0A12;color:#fff;padding-bottom:84px}
+a{color:inherit;text-decoration:none}
+.top{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid #222;position:sticky;top:0;background:#0A0A12;z-index:50}
+.ava{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#C9A227,#22C55E);display:flex;align-items:center;justify-content:center;font-weight:900;color:#111;border:2px solid #22C55E}
+.btn{display:flex;align-items:center;justify-content:center;padding:14px;border-radius:999px;font-weight:800;background:#C9A227;color:#111;min-height:50px;margin-top:10px;border:none;cursor:pointer}
+.btn-green{background:#22C55E;color:#fff}.btn-dark{background:#1A1A28;color:#fff;border:1px solid #333}.btn-red{background:#DC2626;color:#fff}
+.card{background:#15151F;border:1px solid #26263A;border-radius:16px;margin:12px;padding:16px}
+input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#0A0A12;color:#fff;margin-top:8px}
+label{font-size:12px;font-weight:700;margin-top:12px;display:block}
+.row3{display:flex;gap:8px}.row3 div{flex:1;background:#0A0A12;border:1px solid #333;border-radius:12px;padding:12px;text-align:center}
+.row3 small{color:#94A3B8;font-size:11px}.row3 b{font-size:16px}
+.qrow{display:flex;gap:8px}.qrow a{flex:1;background:#0A0A12;border:1px solid #333;border-radius:12px;padding:12px;text-align:center;font-size:12px;font-weight:700}
+.pay{background:#fff;color:#111;border-radius:14px;padding:14px;margin-top:10px}.payrow{display:flex;justify-content:space-between;background:#F3F3F3;padding:12px;border-radius:10px;margin:8px 0;font-size:14px}
+.split{display:flex;gap:10px}.split .btn{flex:1}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99;padding:16px;overflow-y:auto}
+.modal:target{display:block}
+.box{background:#15151F;border:1px solid #333;border-radius:16px;padding:20px}
+.tabs{position:fixed;bottom:0;left:0;right:0;background:#0B0B14;border-top:1px solid #222;display:flex;padding:8px;z-index:50}
+.tab{flex:1;text-align:center;padding:10px;font-size:11px;color:#94A3B8}.tab.active{color:#C9A227;font-weight:800}
+</style></head><body>
+
+<div class="top"><b>✦ XEROF <span style="color:#C9A227">256</span> <span style="font-size:10px;background:#C9A227;color:#111;padding:3px 7px;border-radius:20px">PRO</span></b><div style="display:flex;gap:8px;align-items:center"><span style="font-size:12px;color:#22C55E">● LIVE</span><div class="ava" id="avaLetter">J</div></div></div>
+<div style="background:#14532D;padding:9px;text-align:center;font-size:12px">🟢 <span id="liveClock">--:--:--</span> • <span id="liveDate">--</span> • <span id="sessionBadge">LONDON</span></div>
+
+<div class="card" style="border:1px solid #C9A227"><div style="display:flex;justify-content:space-between"><span style="color:#94A3B8;font-size:12px">Total Balance</span><span style="background:#14532D;color:#22C55E;padding:4px 9px;border-radius:20px;font-size:11px;font-weight:800">✅ VERIFIED</span></div><div style="font-size:34px;font-weight:900" id="balTop">$100.00</div><div style="color:#22C55E;font-size:13px">▲ +$0.00 Today (+0.00%)</div>
+<div class="row3" style="margin-top:12px"><div><small>Equity</small><br><b id="eqTop">$100.00</b></div><div><small>P&L</small><br><b id="pnlTop" style="color:#22C55E">+$0.00</b></div><div><small>Free Margin</small><br><b>$98.50</b></div></div>
+<div class="qrow" style="margin-top:10px"><a href="tel:*165*1%23">➕ Deposit</a><a href="https://wa.me/256767590921">💬 Support</a><a href="#dashboard">📊 Signals</a><a href="#wallet">💳 Wallet</a></div></div>
+
+<div style="padding:0 12px"><h1 style="font-size:24px">Good Morning, <span id="helloName" style="color:#C9A227">Juju</span> 👋</h1><p style="color:#94A3B8;font-size:13px" id="dailyBias">Bias: Calculating...</p></div>
+
+<div class="card"><div style="display:flex;justify-content:space-between"><b>XAUUSD • GOLD</b><span style="color:#22C55E;font-size:12px">● LIVE</span></div><div style="font-size:36px;font-weight:900" id="price">$3,873.04</div><div style="font-size:12px;color:#94A3B8">High 3,888.98 • Low 3,841.01 • Spread 0.18</div>
+<div style="background:#0A0A12;border:1px solid #C9A227;border-radius:12px;padding:12px;margin-top:10px"><div id="signalBlur" style="filter:blur(5px)"><h2 id="signalText">⏳ SCANNING...</h2><p id="signalDetail" style="font-size:13px;color:#94A3B8">Waiting...</p></div><button class="btn" onclick="checkSignal()">ANALYZE NOW</button></div>
+<div class="split"><a href="https://www.justmarkets.com/" class="btn btn-red">🔴 SELL</a><a href="https://www.justmarkets.com/" class="btn btn-green">🟢 BUY</a></div>
+<p style="text-align:center;font-size:12px;color:#94A3B8;margin-top:8px" id="statusBadge">🔒 LOCKED - Sign In To Unlock Signal</p></div>
+
+<div class="card"><b>📈 Market Watch</b><div id="watchList" style="margin-top:10px"></div></div>
+
+<div id="wallet" class="card"><b>💳 Wallet - Pay</b><p style="font-size:13px;color:#94A3B8">Tap Pay - dialer opens - send proof on WhatsApp</p><div class="pay"><div class="payrow"><span>📱 MTN MoMo</span><b>0794745128</b></div><div class="payrow"><span>📱 Airtel Money</span><b>0708518242</b></div><div class="payrow"><span>💰 Weekly</span><b>UGX 25,000</b></div><div class="payrow"><span>💰 Starter</span><b>$35 / month</b></div><a href="https://wa.me/256767590921?text=Here%20is%20my%20payment%20proof" class="btn btn-green">💬 Send Proof</a></div><a href="tel:*165*1%23" class="btn">📞 Pay Now - Dial *165*1#</a><a href="https://wa.me/256767590921?text=I%20want%20FREE%20trial" class="btn btn-dark">🎁 Request FREE Trial</a></div>
+
+<div id="dashboard" class="card"><b>📊 Dashboard</b><p style="font-size:13px;color:#94A3B8">Today: <b id="todayCount">0 / 3</b> • Win Rate: <b id="winRate">--</b></p><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-dark" style="flex:1" onclick="logTrade(true)">✅ LOG WIN</button><button class="btn btn-dark" style="flex:1" onclick="logTrade(false)">❌ LOG LOSS</button></div><label>Access Code</label><input id="codeInput" placeholder="XEROF-TRIAL-001"><button class="btn" onclick="activateCode()">ACTIVATE TERMINAL</button><p id="codeMsg" style="color:#C9A227;text-align:center"></p><a href="#signin" class="btn btn-dark">Sign In With Email</a></div>
+
+<div class="card"><b>🧮 Calculator</b><label>Balance ($)</label><input id="bal" type="number" placeholder="100"><label>Risk %</label><input id="riskPct" value="1" type="number"><label>SL ($)</label><input id="slVal" value="1.50" type="number"><button class="btn" onclick="calcLot()">CALCULATE LOT</button><div id="calcResult" style="background:#0A0A12;padding:12px;border-radius:10px;margin-top:10px">Enter balance</div></div>
+
+<div class="card" style="border:1px solid #22C55E"><b>✅ Verified Team - Kampala</b><p style="font-size:13px;color:#94A3B8">Founder + Support • Replies in &lt; 10 mins • We never ask MT5 password</p><a href="https://wa.me/256767590921?text=Hello%2C%20verify%20XEROF" class="btn btn-green">💬 Chat With Founder</a></div>
+
+<div class="tabs"><a href="#" class="tab active">🏠<br>Home</a><a href="#dashboard" class="tab">📊<br>Signals</a><a href="#wallet" class="tab">💳<br>Wallet</a><a href="#signup" class="tab">✍️<br>Sign Up</a></div>
+
+<div id="signup" class="modal"><div class="box"><h2>Create Free Account</h2><p style="color:#94A3B8;font-size:13px">2 Days Free Trial • No card needed</p><label>Full Name *</label><input id="fName" placeholder="Juju"><label>Email *</label><input id="fEmail" placeholder="test@gmail.com"><label>Phone *</label><input id="fPhone" placeholder="0767590921"><label>Password *</label><input id="fPass" type="password" placeholder="123456"><a href="https://wa.me/256767590921" class="btn" onclick="return createAccountNow()">Create Account → Unlock</a><a href="#" class="btn btn-dark">✕ Close</a><p id="authMsg" style="color:#C9A227;text-align:center"></p></div></div>
+
+<div id="signin" class="modal"><div class="box"><h2>Welcome Back</h2><label>Email *</label><input id="sEmail" placeholder="test@gmail.com"><label>Password *</label><input id="sPass" type="password" placeholder="123456"><a href="https://wa.me/256767590921" class="btn" onclick="return signInNow()">Sign In → Unlock</a><a href="#signup" class="btn btn-dark">No account? Create Free</a><a href="#" class="btn btn-dark">✕ Close</a><p id="authMsg2" style="color:#C9A227;text-align:center"></p></div></div>
+
+<div id="admin" class="modal"><div class="box"><h3 style="color:#C9A227">👑 ADMIN - OWNER ONLY</h3><p style="font-size:13px;color:#94A3B8">Enter Owner PIN to unlock code generator:</p><label>Owner PIN</label><input id="adminPin" type="password" placeholder="****"><button class="btn" onclick="checkAdmin()">UNLOCK ADMIN</button><div id="adminLock" style="display:none;margin-top:10px"><button class="btn" onclick="genCode('TRIAL')">+ Generate TRIAL (2 Days)</button><button class="btn" onclick="genCode('PRO')">+ Generate PREMIUM (30 Days)</button><div id="genResult"></div></div><a href="#" class="btn btn-dark">✕ Close Admin</a></div></div>
+
+<script>
+function txt(id,t){var e=document.getElementById(id);if(e)e.innerText=t;}
+function val(id){var e=document.getElementById(id);return e?e.value.trim():'';}
+var price=3873.04,wins=0,losses=0,lastCode='',bal=100;
+var watch=[['XAUUSD',3873.04,'+0.42%'],['EURUSD',1.0845,'+0.12%'],['GBPUSD',1.2712,'-0.08%'],['BTCUSD',97450,'+1.24%']];
+function unlock(){var b=document.getElementById('signalBlur');if(b)b.style.filter='none';txt('statusBadge','✅ TRIAL ACTIVE - 2 DAYS LEFT');}
+function createAccountNow(){var n=val('fName'),e=val('fEmail'),p=val('fPass');if(!n){alert('Enter Full Name');return false;}if(!e){alert('Enter Email');return false;}if(!p){alert('Enter Password');return false;}unlock();txt('authMsg','✅ Welcome '+n);txt('helloName',n.split(' ')[0]);var a=document.getElementById('avaLetter');if(a)a.innerText=n.charAt(0);alert('✅ Welcome '+n+'! Account Created!');window.location.hash='#';return false;}
+function signInNow(){var e=val('sEmail'),p=val('sPass');if(!e||!p){alert('Enter Email + Password');return false;}unlock();txt('authMsg2','✅ Welcome back!');alert('✅ Welcome back! Signed In!');window.location.hash='#';return false;}
+function checkSignal(){var a=['🟢 BUY XAUUSD - Sweep Low then BUY','🔴 SELL XAUUSD - Sweep High then SELL','⏳ NO TRADE - Wait for Sweep'];var s=a[Math.floor(Math.random()*3)];txt('signalText',s);txt('signalDetail','Entry: $'+price.toFixed(2)+' | SL: Below Sweep | TP: Next High/Low | Risk 1%');}
+function logTrade(w){if(w){wins++;bal+=2;}else{losses++;bal-=1;}var t=wins+losses;txt('todayCount',t+' / 3');txt('winRate',t?Math.round(wins/t*100)+'%':'--');txt('balTop','$'+bal.toFixed(2));txt('eqTop','$'+bal.toFixed(2));txt('pnlTop',(bal>=100?'+$':'-$')+Math.abs(bal-100).toFixed(2));alert(w?'✅ Win Logged +$2':'❌ Loss Logged -$1');}
+function activateCode(){var c=val('codeInput').toUpperCase();if(c.indexOf('XEROF-')===0){unlock();txt('codeMsg','✅ Activated!');alert('✅ Activated!');}else{txt('codeMsg','❌ Invalid. Use XEROF-TRIAL-001');}}
+function calcLot(){var b=parseFloat(val('bal'));if(!b){alert('Enter balance');return;}var r=parseFloat(val('riskPct'))||1;var s=parseFloat(val('slVal'))||1.5;var rm=b*r/100;var lot=Math.max(0.01,(rm/s*0.01)).toFixed(2);var e=document.getElementById('calcResult');if(e)e.innerHTML='Balance $'+b+'<br>Risk $'+rm.toFixed(2)+'<br><b>Your Lot: '+lot+'</b>';}
+function checkAdmin(){var p=val('adminPin');if(p==='2560'){document.getElementById('adminLock').style.display='block';alert('✅ Welcome Boss! Admin Unlocked');}else{alert('❌ Wrong PIN - Access Denied');window.location.hash='#';}}
+function genCode(t){var n=Math.floor(100+Math.random()*900);var code=t==='TRIAL'?'XEROF-TRIAL-'+n:'XEROF-PRO-'+n;lastCode=code;var g=document.getElementById('genResult');if(g)g.innerHTML+='<div style="background:#0A0A12;padding:10px;margin-top:8px;border-radius:8px">✅ <b>'+code+'</b></div>';alert('Generated: '+code);}
+function renderWatch(){var h='';for(var i=0;i<watch.length;i++){h+='<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222"><span>'+watch[i][0]+'</span><b>'+watch[i][1]+'</b><span style="color:'+(watch[i][2].charAt(0)==='+'?'#22C55E':'#DC2626')+'">'+watch[i][2]+'</span></div>';}var e=document.getElementById('watchList');if(e)e.innerHTML=h;}
+function clock(){var now=new Date();txt('liveClock',now.toLocaleTimeString('en-GB'));txt('liveDate',now.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}));var h=now.getHours();txt('sessionBadge',h>=10&&h<16?'LONDON':h>=16&&h<22?'NEW YORK':'ASIA');txt('dailyBias',now.getDate()%3===0?'Bias: BULLISH - Sweep Low then BUY':now.getDate()%3===1?'Bias: BEARISH - Sweep High then SELL':'Bias: RANGE - Wait for Sweep');txt('price','$'+price.toFixed(2));}
+clock();checkSignal();renderWatch();setInterval(clock,1000);
+</script></body></html>
